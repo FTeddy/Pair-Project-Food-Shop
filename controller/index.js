@@ -1,7 +1,7 @@
 "use strict"
-const ControllerA = require('./ControllerA.js')
-const ControllerB = require('./ControllerB.js')
-const ControllerC = require('./ControllerC.js')
+const MenuController = require('./MenuController.js')
+const CostumerController = require('./CostumerController.js')
+const InvoiceController = require('./InvoiceController.js')
 
 class Controller {
 
@@ -17,7 +17,7 @@ class Controller {
 
 module.exports = {
   Controller: Controller,
-  ControllerA: ControllerA,
-  ControllerB: ControllerB,
-  ControllerC:ControllerC
+  MenuController: MenuController,
+  CostumerController: CostumerController,
+  InvoiceController: InvoiceController
 };

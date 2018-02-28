@@ -2,9 +2,9 @@ const express = require('express')
 const router = express.Router()
 const Controller = require('../controller/index.js').Controller
 
-router.use('/page1', require('./routeA.js'))
-router.use('/page2', require('./routeB.js'))
-router.use('/page3', require('./routeC.js'))
+router.use('/menu', require('./menu.js'))
+router.use('/costumer', require('./costumer.js'))
+router.use('/invoice', require('./invoice.js'))
 
 router.get('/', Controller.home)
 

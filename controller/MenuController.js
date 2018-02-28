@@ -2,12 +2,12 @@
 const db = require('../models/index.js')
 const express = require('express')
 
-class ControllerB {
+class MenuController {
 
   static homepage(req, res){
-
+    res.send('Menu page');
   }
 
 }
 
-module.exports = ControllerB;
+module.exports = MenuController;

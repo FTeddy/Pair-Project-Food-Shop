@@ -2,12 +2,12 @@
 const db = require('../models/index.js')
 const express = require('express')
 
-class ControllerA {
+class CostumerController {
 
   static homepage(req, res){
-
+    res.send('costumer page');
   }
 
 }
 
-module.exports = ControllerA;
+module.exports = CostumerController;
