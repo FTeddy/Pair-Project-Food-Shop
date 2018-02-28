@@ -18,6 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   });
   Invoice.associate = function(models) {
     // associations can be defined here
+    // Invoice.belongsTo(models.Costumer)
+    // Invoice.belongsToMany(models.Menu, {through : 'InvoiceMenu'})
+    // Invoice.hasMany(models.InvoiceMenu)
   };
   return Invoice;
 };
