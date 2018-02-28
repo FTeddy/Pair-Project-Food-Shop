@@ -6,12 +6,13 @@ class CostumerController {
 
   static homepage(req, res){
     db.Costumer.findAll({
+      order: [['userName', 'ASC']]
       // include: [
       //   { model: db.Invoice },
       //   { model: db.InvoiceMenu }
       // ]
     }).then(foundCostumers => {
-      // res.send('costumer page');
+      // res.send(foundCostumers);
       res.render('./costumer/costumer.ejs', {
         title: 'Costumer Page',
         header: 'Costumer Page',
@@ -19,13 +20,14 @@ class CostumerController {
         err: null
       })
     })
-
   }
+
+
 
   static costumerAdd(req, res){
     res.render('./costumer/costumerAddForm.ejs', {
-      title: 'Adding Costumer'
-      header: 'Adding Costumer'
+      title: 'Adding Costumer',
+      header: 'Adding Costumer',
       formData:{
         userName: '',
         password: ''
@@ -34,7 +36,7 @@ class CostumerController {
     })
   }
   static costumerAddPost(req, res){
-    db.Costumer.Create({
+    db.Costumer.create({
       userName: req.body.userName,
       password: req.body.password,
       createdAt: new Date(),
@@ -106,7 +108,7 @@ class CostumerController {
         individualHooks: true
       }
     ).then(()=> {
-      res.redirect('/customer')
+      res.redirect('/costumer')
     }).catch(err => {
       console.log('===== DELETE ====='+err);
     })

@@ -4,7 +4,20 @@ module.exports = (sequelize, DataTypes) => {
     userName: {
       type: DataTypes.STRING,
       validate: {
-        notEmpty: true
+        notEmpty: true,
+        isUnique(value, callback){
+          Costumer.findOne({
+            where:{
+              userName:value
+            }
+          }).then(foundCostumer => {
+            if (foundCostumer) {
+              callback(`${value} is currently in use. Please create a new username.`);
+            } else {
+              callback();
+            }
+          })
+        }
       }
     },
     password: {

@@ -2,8 +2,8 @@ const express = require('express')
 const router = express.Router()
 const CostumerController = require('../controller/index.js').CostumerController
 
-router.get('/', CostumerController.home)
-
+router.get('/', CostumerController.homepage)
+//
 router.get('/add', CostumerController.costumerAdd)
 router.post('/add', CostumerController.costumerAddPost)
 

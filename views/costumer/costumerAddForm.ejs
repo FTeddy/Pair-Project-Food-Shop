@@ -6,22 +6,25 @@
 </head>
 
 <body>
-  <%- include('./partial/navigation.ejs') %>
+  <%- include('../partial/navigation.ejs') %>
   <div class="main">
     <div class="content">
       <h1><%= header %></h1>
-      <% if (err) { %>
-        <h4 style="color:red"><%= err.message %><h4>
-      <% } %>
-      <form action="/costumer/add" method="post">
-        Username:<br>
-        <input type="text" name="userName" value="<%= formData.userName %>"><br>
-        <br>
-        New Password:<br>
-        <input type="password" name="password" value="<%= formData.password %>"><br>
-        <br>
-        <input type="submit" value="Submit">
-      </form>
+
+      <div class="form">
+        <% if (err) { %>
+          <h4 style="color:red"><%= err.message %><h4>
+        <% } %>
+        <form action="/costumer/add" method="post">
+          Username:<br>
+          <input type="text" name="userName" value="<%= formData.userName %>"><br>
+          <br>
+          New Password:<br>
+          <input type="password" name="password" value="<%= formData.password %>"><br>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+      </div>    
 
     </div>
   </div>
