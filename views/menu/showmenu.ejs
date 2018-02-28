@@ -1,0 +1,40 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title></title>
+</head>
+
+<body>
+  <%- include('../partial/navigation.ejs') %>
+  <h1><%= title %></h1>
+
+  <button>
+    <a href="/menu/add">
+    Add New Menu
+    </a>
+  </button><br><br>
+
+  <form method="POST">
+    <table border="1">
+      <tr>
+        <th>No.</th>
+        <th>Menu Section</th>
+        <th>Menu Name</th>
+        <th>Price</th>
+        <th>Action</th>
+      </tr>
+      <% for (let i = 0; i < arrObjMenu.length; i++) { %>
+        <tr>
+          <td><%= arrObjMenu[i].id %></td>
+          <td><%= arrObjMenu[i].MenuType %></td>
+          <td><%= arrObjMenu[i].Name %></td>
+          <td><%= helpers.formatuang(arrObjMenu[i].Price) %></td>
+          <td><a href="/menu/edit/<%=arrObjMenu[i].id%>">Edit</a> | <a href="/menu/delete/<%=arrObjMenu[i].id%>">Delete</a></td>
+        </tr>
+      <% } %>
+    </table>
+    <br>
+  </form>
+</body>
+</html>
