@@ -4,8 +4,26 @@ const express = require('express')
 
 class CostumerController {
 
+  static isLogin(req){
+    if (req.session.userName !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static user(req){
+    if (req.session.userName !== undefined) {
+      return req.session.userName;
+    } else {
+      return null;
+    }
+  }
+
   static homepage(req, res){
-    console.log(req.session)
+    // console.log(req.session)
+    let isLogin = CostumerController.isLogin(req);
+    let user = CostumerController.user(req);
     db.Costumer.findAll({
       order: [['userName', 'ASC']],
       include: [
@@ -18,12 +36,16 @@ class CostumerController {
         title: 'Costumer Page',
         header: 'Costumer Page',
         foundCostumers: foundCostumers,
+        isLogin: isLogin,
+        user: user,
         err: null
       })
     })
   }
 
   static costumerAdd(req, res){
+    let isLogin = CostumerController.isLogin(req);
+    let user = CostumerController.user(req);
     res.render('./costumer/costumerAddForm.ejs', {
       title: 'Adding Costumer',
       header: 'Adding Costumer',
@@ -31,6 +53,8 @@ class CostumerController {
         userName: '',
         password: ''
       },
+      isLogin: isLogin,
+      user: user,
       err: null
     })
   }
@@ -43,6 +67,8 @@ class CostumerController {
     }).then(newCostumer => {
       res.redirect('/costumer')
     }).catch(err => {
+      let isLogin = CostumerController.isLogin(req);
+      let user = CostumerController.user(req);
       res.render('./costumer/costumerAddForm.ejs', {
         title: 'Adding Costumer',
         header: 'Adding Costumer',
@@ -50,12 +76,16 @@ class CostumerController {
           userName: req.body.userName,
           password: ''
         },
+        isLogin: isLogin,
+        user: user,
         err: err
       })
     })
   }
 
   static costumerEdit(req, res){
+    let isLogin = CostumerController.isLogin(req);
+    let user = CostumerController.user(req);
     let costumerId = req.params.id;
     db.Costumer.findById(costumerId).then(foundCostumer => {
       res.render('./costumer/costumerEditForm.ejs', {
@@ -63,11 +93,15 @@ class CostumerController {
         header: 'Editing Costumer',
         costumerId: costumerId,
         foundCostumer: foundCostumer,
+        isLogin: isLogin,
+        user: user,
         err: null
       })
     })
   }
   static costumerEditPost(req, res){
+    let isLogin = CostumerController.isLogin(req);
+    let user = CostumerController.user(req);
     let costumerId = req.params.id;
     db.Costumer.update(
       {
@@ -91,6 +125,8 @@ class CostumerController {
           userName: req.body.userName,
           password: req.body.password
         },
+        isLogin: isLogin,
+        user: user,
         err: err
       })
     })
