@@ -9,6 +9,12 @@
   <%- include('../partial/navigation.ejs') %>
   <h1><%= title %></h1>
 
+  <b>Best Seller Items:</b>
+  <% for (let i = 0; i < arrIdMax3.length; i++) { %>
+  <%= arrObjMenu[arrIdMax3[i]-1].Name %>,
+  <% } %>
+  <br><br>
+
   <button>
     <a href="/menu/add">
     Add New Menu

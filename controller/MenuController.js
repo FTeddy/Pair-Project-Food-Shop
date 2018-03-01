@@ -1,20 +1,65 @@
 'use strict'
 const db = require('../models/index.js')
 const express = require('express')
+const sequelize = require('sequelize');
+const Op = sequelize.Op;
 
 class MenuController {
   static homepage(req, res){
     // res.send('Menu page');
+    let inJanuary = '2018-01%';
+    let inFebuary = '2018-02%';
     db.Menu.findAll({
+      include: [{model: db.InvoiceMenu, 
+        order: [['Quantity','DESC']],
+        group: 'MenuId',
+      }, {
+        model: db.Invoice,
+        where: {
+          buyDate:{
+            [Op.like]: inJanuary
+          } 
+        }
+      } ],
       order: [['id','ASC']]
     }).then(projects => {
       // projects will be an array of all Project instances
-      let obj = {
-        title: 'MENU',
-        arrObjMenu: projects
+
+      // res.send(projects);
+
+      let arrtotalQty = [];
+      for(let i = 0; i < projects.length; i++){
+        projects[i].dataValues.totalQty = 0;
+        for (let j = 0; j < projects[i].InvoiceMenus.length; j++) {
+          projects[i].dataValues.totalQty += projects[i].InvoiceMenus[j].Quantity;
+        }
+        arrtotalQty.push(projects[i].dataValues.totalQty);
       }
-      // res.send(obj);
-      res.render('./menu/showmenu.ejs', obj);
+      let arrQtyMax3 = arrtotalQty.sort(function(a, b){return b-a}).slice(0,3)
+
+      let arrIdMax3 = [];
+      for(let i = 0; i < projects.length; i++){
+        for (let j = 0; j < arrQtyMax3.length; j++){
+          if (projects[i].dataValues.totalQty == arrQtyMax3[j]) {
+            arrIdMax3.push(projects[i].dataValues.id);
+          }
+        }
+
+
+      }
+      
+      // res.send(arrtotalQty);
+      // res.send(arrIdMax3);
+
+        let obj = {
+          title: 'MENU',
+          arrObjMenu: projects,
+          arrIdMax3: arrIdMax3
+        }
+        // res.send(obj);
+        res.render('./menu/showmenu.ejs', obj);
+      
+      
     })
   }
 

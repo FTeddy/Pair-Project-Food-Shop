@@ -50,6 +50,7 @@ module.exports = (sequelize, DataTypes) => {
   InvoiceMenu.associate = function(models) {
     // associations can be defined here
     InvoiceMenu.belongsTo(models.Menu);
+    InvoiceMenu.belongsTo(models.Invoice);
   };
   return InvoiceMenu;
 };

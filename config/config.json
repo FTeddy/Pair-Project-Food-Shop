@@ -1,8 +1,8 @@
 {
   "development": {
-    "username": "werkbau",
-    "password": "pokemon",
-    "database": "Sushido",
+    "username": "postgres",
+    "password": "katakunci",
+    "database": "restaurant_database",
     "host": "127.0.0.1",
     "dialect": "postgres"
   },
