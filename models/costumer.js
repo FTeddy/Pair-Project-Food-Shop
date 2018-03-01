@@ -52,14 +52,11 @@ module.exports = (sequelize, DataTypes) => {
     ).then(foundCostumers =>{
       let frequent = [];
       for (var i = 0; i < foundCostumers.length; i++) {
-        // console.log(foundCostumers[i]);
         if(foundCostumers[i].Invoices.length > 2){
 
           frequent.push(foundCostumers[i])
         }
       }
-      // console.log('===============');
-      // console.log(frequent);
       callback(frequent)
     })
   }
