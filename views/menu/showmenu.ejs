@@ -29,7 +29,7 @@
           <td><%= arrObjMenu[i].id %></td>
           <td><%= arrObjMenu[i].MenuType %></td>
           <td><%= arrObjMenu[i].Name %></td>
-          <td><%= helpers.formatuang(arrObjMenu[i].Price) %></td>
+          <td><%= helper.formatuang(arrObjMenu[i].Price) %></td>
           <td><a href="/menu/edit/<%=arrObjMenu[i].id%>">Edit</a> | <a href="/menu/delete/<%=arrObjMenu[i].id%>">Delete</a></td>
         </tr>
       <% } %>

@@ -45,13 +45,15 @@ class MenuController {
 
   static menuEditGet(req,res){
     let obj = {
-      title: 'Edit Menu Data'
+      title: 'Edit Menu Data',
+      err: null
   };
   res.render('./menu/editmenu.ejs', obj);
   }
 
   static menuEditPost(req,res){
     let obj = {
+      title:'Edit Menu Data',
       MenuType: req.body.MenuType,
       Name: req.body.Name,
       Price: req.body.Price
@@ -64,7 +66,11 @@ class MenuController {
         res.redirect('/menu');
     })
     .catch((err) => {
-        // res.render('items.ejs', {err: err.message})
+        let obj1 = {
+          title:'Edit Menu Data',
+          err: err.message,
+        }
+        res.render('./menu/editmenu.ejs', obj1)
     })
   }
 

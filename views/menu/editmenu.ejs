@@ -10,7 +10,8 @@
   
   <div class="main">
     <div class="content">
-      <h1><%= title %></h1>
+        <h1><%= title %></h1>
+        <br><center><i><%= err %></i></center><br>
         <div class="form">
             <form method="POST">
                 Name: 
@@ -23,7 +24,7 @@
                     <option value="Dessert">Dessert</option>
                 </select><br><br>
                 Price:
-                <input type="number" name="Price"><br><br>
+                <input type="text" name="Price"><br><br>
                 <input type="submit" value="Edit Menu">
             </form>
         </div>

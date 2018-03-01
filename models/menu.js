@@ -30,8 +30,13 @@ module.exports = (sequelize, DataTypes) => {
     } 
   }, {
     hooks: {
-      beforeCreate: () => {
-        console.log('test');
+      beforeCreate(instance, options){
+        if(!instance.Price || instance.Price <= 0) {
+          instance.Price = 15000;
+        }
+        // console.log('----1',instance);
+        // console.log('----2',options);
+        
       }
     }
   });
