@@ -12,5 +12,5 @@ app.locals.helper = require('./helper')
 app.use('/', routes)
 
 app.listen(3000, ()=>{
-  console.log('Start listening on PORT 3004');
+  console.log('Start listening on PORT 3000');
 })

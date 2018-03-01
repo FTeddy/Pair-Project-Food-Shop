@@ -9,8 +9,8 @@ class Controller {
   static home(req, res){
     // res.send('homepage')
     res.render('home.ejs', {
-      title: 'Homepage',
-      header: 'Welcome to mini-POS'
+      title: 'Sushido',
+      header: 'Welcome to Japan Sushido'
     })
   }
 
