@@ -1,0 +1,56 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title><%= title %></title>
+</head>
+
+<body>
+  <%- include('../partial/navigation.ejs', {isLogin:isLogin}) %>
+  <div class="main">
+    <div class="content">
+      <h1><%= header %></h1>
+      <a href="invoice/add">
+        <button type="button" name="button">
+          Add invoice
+        </button>
+      </a>
+      <table>
+        <tr>
+          <td>No</td>
+          <td>ID</td>
+          <td>Costumer ID</td>
+          <td>Transaction Date</td>
+          <td>Actions</td>
+        </tr>
+
+          <% for (var i = 0; i < foundInvoices.length; i++) { %>
+            <tr>
+              <td><%= i+1 %></td>
+              <td><%= foundInvoices[i].id %></td>
+              <td><%= foundInvoices[i].CostumerId %></td>
+              <td><%= foundInvoices[i].buyDate %></td>
+              <td>
+                <a href="/invoice/edit/<%= foundInvoices[i].id %>">
+                  <button type="button" name="button" >
+                    edit
+                  </button>
+                </a>
+                /
+                <a href="/invoice/delete/<%= foundInvoices[i].id   %>" >
+                  <button type="button" name="button" onclick="deleteConfirm()">
+                    delete
+                  </button>
+                </a>
+              </td>
+            </tr>
+          <% } %>
+
+
+      </table>
+
+    </div>
+  </div>
+
+</body>
+</html>
