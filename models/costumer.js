@@ -39,6 +39,33 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+  Costumer.frequentBuyer = function(callback){
+    Costumer.findAll(
+      {
+        include:
+        [
+          {
+            model: sequelize.models.Invoice,
+          }
+        ]
+      }
+    ).then(foundCostumers =>{
+      let frequent = [];
+      for (var i = 0; i < foundCostumers.length; i++) {
+        if(foundCostumers[i].Invoices.length > 2){
+
+          frequent.push(foundCostumers[i])
+        }
+      }
+      callback(frequent)
+    })
+  }
+
+  Costumer.prototype.sumInvoices = function(){
+    let length = this.Invoices.length;
+    return length;
+  }
+
   Costumer.associate = function(models) {
     // associations can be defined here
     Costumer.hasMany(models.Invoice)

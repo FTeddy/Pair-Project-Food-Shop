@@ -4,12 +4,12 @@ const MenuController = require('../controller/index.js').MenuController
 
 router.get('/', MenuController.homepage)
 //
-// router.get('/add', MenuController.itemAddPage)
-// router.post('/add', MenuController.itemAddPagePost)
+router.get('/add', MenuController.menuAddGet)
+router.post('/add', MenuController.menuAddPost)
 //
-// router.get('/edit/:id', MenuController.itemEditPage)
-// router.post('/edit/:id', MenuController.itemEditPagePost)
+router.get('/edit/:id', MenuController.menuEditGet)
+router.post('/edit/:id', MenuController.menuEditPost)
 //
-// router.get('/delete/:id', MenuController.itemDeletePage)
+router.get('/delete/:id', MenuController.menuDelete)
 
 module.exports = router;

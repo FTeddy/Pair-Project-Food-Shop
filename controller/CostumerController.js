@@ -31,14 +31,17 @@ class CostumerController {
       //   { model: db.InvoiceMenu }
       ]
     }).then(foundCostumers => {
-      // res.send(foundCostumers[0].Invoices[0]);
-      res.render('./costumer/costumer.ejs', {
-        title: 'Costumer Page',
-        header: 'Costumer Page',
-        foundCostumers: foundCostumers,
-        isLogin: isLogin,
-        user: user,
-        err: null
+
+      let frequent =  db.Costumer.frequentBuyer(function(frequent){
+        res.render('./costumer/costumer.ejs', {
+          title: 'Costumer Page',
+          header: 'Costumer Page',
+          frequent: frequent,
+          foundCostumers: foundCostumers,
+          isLogin: isLogin,
+          user: user,
+          err: null
+        })
       })
     })
   }

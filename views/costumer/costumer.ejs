@@ -73,6 +73,22 @@
 
       </table>
 
+      <table>
+        Frequent Costumers!
+        <tr>
+          <th>id</th>
+          <th>name</th>
+          <th>number of orders</th>
+        </tr>
+        <% for (var i = 0; i < frequent.length; i++) { %>
+          <tr>
+            <td><%= frequent[i].id %></td>
+            <td><%= frequent[i].userName %></td>
+            <td><%= frequent[i].sumInvoices() %></td>
+          </tr>
+        <% } %>
+      </table>
+
     </div>
   </div>
 
