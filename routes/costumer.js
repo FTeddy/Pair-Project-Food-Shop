@@ -3,13 +3,13 @@ const router = express.Router()
 const CostumerController = require('../controller/index.js').CostumerController
 
 router.get('/', CostumerController.homepage)
+//
+router.get('/add', CostumerController.costumerAdd)
+router.post('/add', CostumerController.costumerAddPost)
 
-// router.get('/add', CostumerController.itemAddPage)
-// router.post('/add', CostumerController.itemAddPagePost)
-//
-// router.get('/edit/:id', CostumerController.itemEditPage)
-// router.post('/edit/:id', CostumerController.itemEditPagePost)
-//
-// router.get('/delete/:id', CostumerController.itemDeletePage)
+router.get('/edit/:id', CostumerController.costumerEdit)
+router.post('/edit/:id', CostumerController.costumerEditPost)
+
+router.get('/delete/:id', CostumerController.costumerDelete)
 
 module.exports = router;
