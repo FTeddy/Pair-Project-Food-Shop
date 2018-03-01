@@ -5,6 +5,7 @@ const express = require('express')
 class CostumerController {
 
   static homepage(req, res){
+    console.log(req.session)
     db.Costumer.findAll({
       order: [['userName', 'ASC']],
       include: [
@@ -21,9 +22,6 @@ class CostumerController {
       })
     })
   }
-
-
-
 
   static costumerAdd(req, res){
     res.render('./costumer/costumerAddForm.ejs', {

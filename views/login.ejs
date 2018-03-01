@@ -15,11 +15,15 @@
         <h4 style="color:red"><%= err.message %><h4>
       <% } %>
 
-      <a href="/login">
-        <button type="button" name="button">
-          Login
-        </button>
-      </a>
+      <form action="/login" method="post">
+        Username:<br>
+        <input type="text" name="userName" value=""><br>
+        <br>
+        Password:<br>
+        <input type="password" name="password" value=""><br>
+        <br>
+        <input type="submit" value="Login">
+      </form>
 
 
     </div>
