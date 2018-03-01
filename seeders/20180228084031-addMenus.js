@@ -14,8 +14,8 @@ module.exports = {
     */
 
    const fs = require('fs');
-   let arrInput = fs.readFileSync('./menu.csv','utf8').trim().split('\r\n'); // returns array of string
-   
+   let arrInput = fs.readFileSync('./menu.csv','utf8').trim().split('\n'); // returns array of string
+
    let arrObjInput = [];
    for (let i = 0; i < arrInput.length; i++) {
      let objInput = {};
@@ -40,7 +40,7 @@ module.exports = {
       return queryInterface.bulkDelete('Person', null, {});
     */
 
-    return queryInterface.bulkDelete('Menus', null, {}); 
+    return queryInterface.bulkDelete('Menus', null, {});
 
 
   }

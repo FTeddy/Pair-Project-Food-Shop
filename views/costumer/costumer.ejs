@@ -40,12 +40,7 @@
 
                   <% for (let j = 0; j < foundCostumers[i].Invoices.length; j++) { %>
                     <li>
-
-                      <a href="/costumer/<%= foundCostumers[i].id %>/Invoice/<%= foundCostumers[i].Invoices[j].id %>">
-                        <button type="button" name="button" >
-                          View INV : <%= foundCostumers[i].Invoices[j].id %>
-                        </button>
-                      </a>
+                      INV : <%= foundCostumers[i].Invoices[j].id %>                      
                     </li>
 
                   <% } %>

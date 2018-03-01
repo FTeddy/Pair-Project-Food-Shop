@@ -12,10 +12,10 @@ module.exports = {
         isBetaMember: false
       }], {});
     */
-    
+
    const fs = require('fs');
-   let arrInput = fs.readFileSync('./invoicemenu.csv','utf8').trim().split('\r\n'); // returns array of string
-   
+   let arrInput = fs.readFileSync('./invoicemenu.csv','utf8').trim().split('\n'); // returns array of string
+
    let arrObjInput = [];
    for (let i = 0; i < arrInput.length; i++) {
      let objInput = {};
