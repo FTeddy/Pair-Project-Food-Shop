@@ -6,13 +6,13 @@ class CostumerController {
 
   static homepage(req, res){
     db.Costumer.findAll({
-      order: [['userName', 'ASC']]
-      // include: [
-      //   { model: db.Invoice },
+      order: [['userName', 'ASC']],
+      include: [
+        { model: db.Invoice },
       //   { model: db.InvoiceMenu }
-      // ]
+      ]
     }).then(foundCostumers => {
-      // res.send(foundCostumers);
+      // res.send(foundCostumers[0].Invoices[0]);
       res.render('./costumer/costumer.ejs', {
         title: 'Costumer Page',
         header: 'Costumer Page',
@@ -21,6 +21,7 @@ class CostumerController {
       })
     })
   }
+
 
 
 
