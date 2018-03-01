@@ -1,0 +1,46 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="/styles/css.css">
+  <title></title>
+</head>
+
+<body>
+  <%- include('../partial/navigation.ejs') %>
+  <h1><%= title %></h1>
+
+  <button>
+    <a href="/invoicemenu/add">
+    Add New Invoice Transaction
+    </a>
+  </button><br><br>
+
+  <form method="POST">
+    <table border="1">
+        <tr>
+            <th>No.</th>
+            <th>Invoice No.</th>
+            <!-- <th>Menu Id</th> -->
+            <th>Menu Name</th>
+            <th>Quantity</th>
+            <th>Price Each</th>
+            <th>Action</th>
+        </tr>
+
+        <% for (let i = 0; i < arrObjMenu.length; i++) { %>
+        <tr>
+          <td><%= arrObjMenu[i].id %></td>
+          <td><%= arrObjMenu[i].InvoiceId %></td>
+          <!-- <td><%= arrObjMenu[i].MenuId %></td> -->
+          <td><%= arrObjMenu[i].Menu.Name %></td>
+          <td><%= arrObjMenu[i].Quantity %></td>
+          <td><%= helper.formatuang(arrObjMenu[i].Menu.Price) %></td>
+          <td><a href="/invoicemenu/edit/<%= arrObjMenu[i].id %>">Edit</a> | <a href="/invoicemenu/delete/<%= arrObjMenu[i].id %>">Delete</a></td>
+        </tr>
+        <% } %>
+
+    </table>
+    <br>
+  </form>
+</body>
+</html>
