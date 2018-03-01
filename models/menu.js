@@ -40,8 +40,17 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  Menu.prototype.SumQty = function() {
+      this.totalQty = 0;
+      for (let j = 0; j < this.InvoiceMenus.length; j++) {
+        this.totalQty += this.InvoiceMenus[j].Quantity;
+      }
+  }
+
   Menu.associate = function(models) {
     // associations can be defined here
+    Menu.belongsToMany(models.Invoice, {through : 'InvoiceMenu'})
     Menu.hasMany(models.InvoiceMenu)
   };
   return Menu;
