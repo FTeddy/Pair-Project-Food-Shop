@@ -42,6 +42,7 @@ module.exports = (sequelize, DataTypes) => {
   });
   Menu.associate = function(models) {
     // associations can be defined here
+    Menu.hasMany(models.InvoiceMenu)
   };
   return Menu;
 };

@@ -2,6 +2,7 @@
 const MenuController = require('./MenuController.js')
 const CostumerController = require('./CostumerController.js')
 const InvoiceController = require('./InvoiceController.js')
+const InvoiceMenuController = require('./InvoiceMenuController.js')
 
 class Controller {
 
@@ -19,5 +20,6 @@ module.exports = {
   Controller: Controller,
   MenuController: MenuController,
   CostumerController: CostumerController,
-  InvoiceController: InvoiceController
+  InvoiceController: InvoiceController,
+  InvoiceMenuController: InvoiceMenuController
 };

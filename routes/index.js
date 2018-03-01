@@ -5,6 +5,7 @@ const Controller = require('../controller/index.js').Controller
 router.use('/menu', require('./menu.js'))
 router.use('/costumer', require('./costumer.js'))
 router.use('/invoice', require('./invoice.js'))
+router.use('/invoicemenu', require('./invoicemenu.js'))
 
 router.get('/', Controller.home)
 
