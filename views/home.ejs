@@ -6,10 +6,27 @@
 </head>
 
 <body>
-  <%- include('./partial/navigation.ejs') %>
+  <%- include('./partial/navigation.ejs', {isLogin:isLogin}) %>
   <div class="main">
     <div class="content">
       <h1><%= header %></h1>
+
+      <% if (err) { %>
+        <h4 style="color:red"><%= err.message %><h4>
+      <% } %>
+
+      <% if (isLogin === false) { %>
+        <a href="/login">
+          <button type="button" name="button">
+            Login
+          </button>
+        </a>
+      <% } else { %>
+        <h1>Welcome, <%= user %></h1>
+      <% } %>
+
+
+
     </div>
   </div>
 

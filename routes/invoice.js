@@ -1,15 +1,16 @@
 const express = require('express')
 const router = express.Router()
+const helper = require('../helper')
 const InvoiceController = require('../controller/index.js').InvoiceController
 
-router.get('/', InvoiceController.homepage)
+router.get('/', helper.isLogin, InvoiceController.homepage)
 //
-router.get('/add', InvoiceController.invoiceAdd)
-router.post('/add', InvoiceController.invoiceAddPost)
+router.get('/add', helper.isLogin, InvoiceController.invoiceAdd)
+router.post('/add', helper.isLogin, InvoiceController.invoiceAddPost)
 
-router.get('/edit/:id', InvoiceController.invoiceEdit)
-router.post('/edit/:id', InvoiceController.invoiceEditPost)
+router.get('/edit/:id', helper.isLogin, InvoiceController.invoiceEdit)
+router.post('/edit/:id', helper.isLogin, InvoiceController.invoiceEditPost)
 
-router.get('/delete/:id', InvoiceController.invoiceDelete)
+router.get('/delete/:id', helper.isLogin, InvoiceController.invoiceDelete)
 
 module.exports = router;

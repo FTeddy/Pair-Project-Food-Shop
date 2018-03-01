@@ -4,7 +4,25 @@ const express = require('express')
 
 class InvoiceController {
 
+  static isLogin(req){
+    if (req.session.userName !== undefined) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  static user(req){
+    if (req.session.userName !== undefined) {
+      return req.session.userName;
+    } else {
+      return null;
+    }
+  }
+
   static homepage(req, res){
+    let isLogin = InvoiceController.isLogin(req);
+    let user = InvoiceController.user(req);
     db.Invoice.findAll({
       // include: [
       //   { model: db.menu },
@@ -16,6 +34,8 @@ class InvoiceController {
         title: 'Invoice Page',
         header: 'Invoice Page',
         foundInvoices: foundInvoices,
+        isLogin: isLogin,
+        user: user,
         err: null
       })
     })
@@ -24,12 +44,16 @@ class InvoiceController {
 
 
   static invoiceAdd(req, res){
+    let isLogin = InvoiceController.isLogin(req);
+    let user = InvoiceController.user(req);
     res.render('./invoice/invoiceAddForm.ejs', {
       title: 'Adding Invoice',
       header: 'Adding Invoice',
       formData:{
         CostumerId: ''
       },
+      isLogin: isLogin,
+      user: user,
       err: null
     })
   }
@@ -41,18 +65,24 @@ class InvoiceController {
     }).then(newInvoice => {
       res.redirect('/invoice')
     }).catch(err => {
+      let isLogin = InvoiceController.isLogin(req);
+      let user = InvoiceController.user(req);
       res.render('./invoice/invoiceAddForm.ejs', {
         title: 'Adding Invoice',
         header: 'Adding Invoice',
         formData:{
           CostumerId: req.body.CostumerId
         },
+        isLogin: isLogin,
+        user: user,
         err: err
       })
     })
   }
 
   static invoiceEdit(req, res){
+    let isLogin = InvoiceController.isLogin(req);
+    let user = InvoiceController.user(req);
     let invoiceId = req.params.id;
     db.Invoice.findById(invoiceId).then(foundInvoice => {
       res.render('./invoice/invoiceEditForm.ejs', {
@@ -60,6 +90,8 @@ class InvoiceController {
         header: 'Editing Invoice',
         invoiceId: invoiceId,
         foundInvoice: foundInvoice,
+        isLogin: isLogin,
+        user: user,
         err: null
       })
     })
@@ -79,6 +111,8 @@ class InvoiceController {
     ).then(updatedInvoice => {
       res.redirect('/invoice')
     }).catch(err => {
+      let isLogin = InvoiceController.isLogin(req);
+      let user = InvoiceController.user(req);
       res.render('./invoice/invoiceEditForm.ejs', {
         title: 'Editing Invoice',
         header: 'Editing Invoice',
@@ -86,6 +120,8 @@ class InvoiceController {
         foundInvoice: {
           CostumerId: req.body.CostumerId
         },
+        isLogin: isLogin,
+        user: user,
         err: err
       })
     })
