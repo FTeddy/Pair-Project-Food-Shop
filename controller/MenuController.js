@@ -70,7 +70,7 @@ class MenuController {
 
       // console.log(projects.length);
       // res.send(arrtotalQty);
-      res.send(arrIdMax3);
+      // res.send(arrIdMax3);
 
         let obj = {
           title: 'MENU',
